@@ -313,5 +313,5 @@ Jeśli występuje jakiś inny błąd, którego tutaj nie ma lub masz pytanie dot
 
 # Wygląd
 
-<img src="https://klonba.ml/Itemshop.png">
+![](https://i.imgur.com/Zl8i4he.png)
 Tak wygląda strona główna skonfigurowanego sklepu.
