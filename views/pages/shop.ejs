@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../includes/header"); -%>
+    <body>
+        <%- include("../includes/navbar"); -%>
+        <div class="container-fluid rounded">
+            <div class="col-xl-10 contents">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <% for(const service in services) { %>
+                            <div class="service-item row">
+                                <div class="col-md-3">
+                                    <img class="service-list img-fluid horizontal-card-image" src="<%= services[service].image %>"></div>
+                                <div class="col-md-9">
+                                    <span class="service-name"><%= services[service].name %></span><br>
+                                    <span><%= services[service].description %></span><br>
+                                    <span>Tę usługę zakupiono już <span class="badge badge-info"><%- purchases.filter(pur_amount => pur_amount.service == service).length %></span> razy.</span>
+                                    <div class="mt-1">
+                                        <span class="badge badge-secondary"><i class="fas fa-lock"></i> PaySafeCard: <%= (services[service].price+0.14*services[service].price).toFixed(2) %> zł</span>
+                                        <span class="badge badge-secondary"><i class="fab fa-paypal"></i> PayPal: <%= (services[service].price+0.03*services[service].price+1).toFixed(2) %> zł</span>
+                                        <span class="badge badge-secondary"><i class="far fa-credit-card"></i> Dotpay: <%= (services[service].price+0.02*services[service].price).toFixed(2) %> zł</span>
+                                        <span class="badge badge-secondary"><i class="far fa-credit-card"></i> Paynow: <%= (services[service].price).toFixed(2) %> zł</span>
+                                    </div>
+                                    <a href="usluga/<%- service %>" class="btn btn-outline-secondary buy-button" role="button"><i class="fas fa-shopping-basket"></i> Wybierz</a>
+                                </div>
+                                
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="right-bar col-12 col-md-4 line text-center">
+                        <div onload="Get(); setInterval('Get()', 1000)">
+                            <span id="name"><%- general.name %></span><br>
+                            <span id="players"></span><br>
+                            <span id="ping"></span><br>
+                            <%- include("../includes/status"); -%>
+                        </div>
+                        <div class="mt-2">
+                            <% if(general.last_buyers !== 0) { %>
+                                <span id="name">Ostatnie zakupy</span><br>
+                                <div class="row">
+                                    <% for(const user in purchases) { %>
+                                        <% if(user < general.last_buyers) { %>
+                                            <div class="row purchase">
+                                                <div class="col-4">
+                                                    <img class="rounded margin" src="https://minotar.net/helm/<%- purchases[user].buyer %>/48">
+                                                </div>
+                                                <div class="col-7 text-left">
+                                                    <p class="purchases-buyer"><%- purchases[user].buyer %></p>
+                                                    <p class="purchases-service"><%- services[purchases[user].service].name %></p>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="mt-2">
+                            <%- rightsidepanel %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include("../includes/footer"); -%>
+    </body>
+</html>

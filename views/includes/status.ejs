@@ -1,0 +1,24 @@
+<script>
+    document.getElementById("players").innerHTML = "<span class='badge badge-primary'>Trwa pobieranie informacji</span>";
+    const url = "https://api.minetools.eu/ping/<%- general.server_address %>";
+    window.setInterval(() => {
+    Get();
+    function Get(url){
+        const Httpreq = new XMLHttpRequest();
+        Httpreq.open("GET", url, false);
+        Httpreq.send(null);
+        return Httpreq.responseText;
+    }
+    const status = JSON.parse(Get(url));
+    let players = null;
+    let ping = null;
+    if(status.players.online && status.latency) {
+        players = "<i class='fas fa-users'></i> Gracze: <span class='badge badge-info'>" + status.players.online + "/" + status.players.max + "</span>";
+        ping = "<i class='fas fa-spinner'></i> Ping: <span class='badge badge-info'>" + status.latency.toFixed(0) + " ms</span>"
+    } else {
+        players = "<span class='badge badge-danger'>Offline</span>";
+    }
+    document.getElementById("players").innerHTML = players;
+    document.getElementById("ping").innerHTML = ping;
+    }, 5000);
+</script>

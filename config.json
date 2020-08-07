@@ -1,0 +1,78 @@
+{
+	"_comment": "Poradnik dotyczący instalacji oraz konfiguracji znajdziesz w pliku README.MD | W URL na końcu musi być ukośnik (/) | Pamiętaj o zachowaniu poprawności pliku JSON | Usługi skonfigurujesz w pliku services.json",
+
+	"port": 80,
+	"break": false,
+	"termsfile": "./termsfile.html",
+	"rightsidepanel": "./rightsidepanel.html",
+	"general": {
+		"url": "",
+		"name": "",
+		"keywords": "ItemShop,Minecraft,Serwer",
+		"favicon": "images/favicon.png",
+		"background": "images/background.png",
+		"color": "#006666",
+		"server_address": "",
+		"last_buyers": 6,
+		"service_name_limit": 12,
+		"rightitem": {
+			"name": "",
+			"url": ""
+		}
+	},
+	"important": {
+		"lvluptoken": "",
+		"commands": "pterodactyl / rcon (!)",
+		"pterodactyl": {
+			"url": "",
+			"key": "",
+			"server": ""
+		},
+		"rcon": {
+			"ip": "",
+			"port": 25575,
+			"password": ""
+		}
+	},
+	"webhook": {
+		"url": "",
+		"title": "Zakupiono usługę",
+		"text": "[PLAYER] zakupił [SERVICE] w serwerowym sklepie. Gratulacje!"
+	},
+	"sites": {
+		"break": {
+			"name": "Przerwa techniczna",
+			"description": "Obecnie trwa przerwa techniczna"
+		},
+		"shop": {
+			"name": "Sklep",
+			"description": "Sklep serwera"
+		},
+		"terms": {
+			"name": "Regulamin",
+			"description": "Regulamin serwera"
+		}
+	},
+	"navbar": {
+		"shop": {
+			"url": "/",
+			"name": "Sklep",
+			"icon": "fas fa-shopping-cart"
+		},
+		"terms": {
+			"url": "/regulamin",
+			"name": "Regulamin",
+			"icon": "fas fa-gavel"
+		},
+		"github": {
+			"url": "https://github.com/0zelot",
+			"name": "GitHub",
+			"icon": "fab fa-github"
+		},
+		"other": {
+			"url": "https://example.com",
+			"name": "Przykładowy odnośnik (konfiguracja w config.json)",
+			"icon": ""
+		}
+	}
+}

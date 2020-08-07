@@ -1,0 +1,46 @@
+<!-- https://github.com/0zelot -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Podczas wczytywania strony wystąpił błąd.">
+        <meta name="language" content="pl_PL">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="shortcut icon" type="image/png" href="<%- general.url %><%- general.favicon %>">
+        <link rel="icon" sizes="192x192" href="<%- general.favicon %>">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <title>Błąd</title>
+    </head>
+    <body>
+        <%- include("../includes/navbar"); -%>
+        <div class="error text-center">
+            <p class="title-error"><i class="fas fa-exclamation-circle"></i></p>
+            <p class="minititle-error">Wystąpił nieoczekiwany błąd.</p>
+            <br>
+            <% if(error == 1) { %>
+                <p class="text-error">Sklep nie został skonfigurowany. Należy zedytować plik <span class="badge badge-danger">config.json</span> ustawiając następujące parametry w general: <span class="badge badge-info">URL</span>, <span class="badge badge-info">NAME</span>, <span class="badge badge-info">COLOR</span>, <span class="badge badge-info">SERVER_ADDRESS</span> oraz w important: <span class="badge badge-info">LVLUPTOKEN</span>.</p>
+            <% } else if(error == 2.1) { %>
+                <p class="text-error">Ustawiono metodę wykonywania komend jako <span class="badge badge-info">rcon</span>, jednak nie podano IP i portu oraz hasła. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
+            <% } else if(error == 2.2) { %>
+                <p class="text-error">Ustawiono metodę wykonywania komend jako <span class="badge badge-info">pterodactyl</span>, jednak nie podano adresu, klucza oraz ID serwera. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
+            <% } else if(error == 2.3) { %>
+                <p class="text-error">Podano niepoprawną nazwę metody wykonywania komend. Dostępne metody to <span class="badge badge-info">rcon</span> oraz <span class="badge badge-info">pterodactyl</span>. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
+            <% } else if(error == 3) { %>
+                <p class="text-error">Jedna lub kilka usług zostały niepoprawnie skonfigurowane. Najprawdopodobniej nie podano jakiegoś parametru, lub podano cenę z cudzysłowiami (musi być bez). Należy to zmienić w pliku <span class="badge badge-danger">services.json</span>.</p>
+            <% } else if(error == 4) { %>
+                <p class="text-error">Nazwa jednej lub kilku usług jest zbyt długa. Nie może ona przekraczać 12 znaków. Należy to zmienić w pliku <span class="badge badge-danger">services.json</span>. Opcjonalnie, jeżeli naprawdę potrzebujesz dłuższej nazwy, zwiększ limit w pliku <span class="badge badge-danger">config.json</span> - GENERAL -> SERVICE_NAME_LIMIT, jednak pamiętaj, że dłuższe nazwy mogą wpłynąć na estetyczność strony.</p>
+            <% } else { %>
+                <p class="text-error">Ten błąd nie został przewidziany...</p>
+            <% } %>
+            <br>
+            <p class="text-error">Poradnik dotyczący konfiguracji znajdziesz w pliku <span class="badge badge-success">README.MD</span>.</p>
+            <p class="text-error">Pamiętaj, żeby po każdej zmianie w plikach konfiguracyjnych zrestartować aplikację.</p>
+        </div>
+        <%- include("../includes/style"); -%>
+    </body>
+</html>

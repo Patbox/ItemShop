@@ -1,0 +1,21 @@
+{
+    "1": {
+        "name": "Ranga VIP",
+        "description": "Po zakupie otrzymasz rangę VIP na zawsze.",
+        "image": "images/service.png",
+        "price": 15,
+        "commands": [
+            "say [PLAYER] zakupił rangę VIP.",
+            "ranga dodaj [PLAYER] VIP"
+        ]
+    },
+    "2": {
+        "name": "Ranga sVIP",
+        "description": "Po zakupie otrzymasz rangę sVIP na zawsze.",
+        "image": "images/service.png",
+        "price": 30,
+        "commands": [
+            "say [PLAYER] zakupił rangę sVIP."
+        ]
+    }
+}

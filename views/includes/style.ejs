@@ -1,0 +1,26 @@
+<!-- Configurable CSS -->
+<style>
+    body {
+        background: url("<%- general.url %><%- general.background %>") no-repeat fixed;
+    }
+    a {
+        color: <%- general.color %>
+    }
+    .color {
+        background: <%- general.color %>
+    }
+    div.line {
+        border-left: solid <%- general.color %>;
+    }
+    div.service-item {
+        -webkit-box-shadow: 0px 0px 1px 1px <%- general.color %>;
+        -moz-box-shadow: 0px 0px 1px 1px <%- general.color %>;
+        box-shadow: 0px 0px 1px 1px <%- general.color %>;
+    }
+    ::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 10px <%- general.color %>;
+    }
+    input[type="text"] {
+        border-color: #375a7f;
+    }
+</style>
