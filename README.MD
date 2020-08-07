@@ -2,8 +2,8 @@ Projekt prostego, automatycznego sklepu dla serwerów Minecraft udostępniony na
 
 # Sposób działania
 
-Sklep wykorzystuje API wpłat lvlup.pro, przez co środki z zakupionych usług idą bezpośrednio do wirtualnego portfela na hostingu lvlup.pro. Dzięki temu właściciel może opłacić serwer za zabrane środki.<br>
-Z kodem **NIGHTLAND.PL** zniżka **-13%** na zakup VPS KVM w lvlup.pro.
+Sklep wykorzystuje API wpłat [lvlup.pro](https://lvlup.pro), przez co środki z zakupionych usług idą bezpośrednio do wirtualnego portfela na hostingu lvlup.pro. Dzięki temu właściciel może opłacić serwer za zabrane środki.<br>
+Z kodem **NIGHTLAND.PL** zniżka **-13%** na zakup VPS KVM w [lvlup.pro](https://lvlup.pro).
 
 # Wymagania
 
@@ -313,5 +313,5 @@ Jeśli występuje jakiś inny błąd, którego tutaj nie ma lub masz pytanie dot
 
 # Wygląd
 
-![Itemshop](https://klonba.ml/Itemshop.png)
+<img src="https://klonba.ml/Itemshop.png">
 Tak wygląda strona główna skonfigurowanego sklepu.
