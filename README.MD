@@ -2,16 +2,16 @@ Projekt prostego, automatycznego sklepu dla serwerów Minecraft udostępniony na
 
 # Sposób działania
 
-Sklep wykorzystuje API wpłat [lvlup.pro](https://lvlup.pro), przez co środki z zakupionych usług idą bezpośrednio do wirtualnego portfela na hostingu lvlup.pro. Dzięki temu właściciel może opłacić serwer za zabrane środki.<br>
+Sklep wykorzystuje API wpłat [lvlup.pro](https://lvlup.pro), przez co środki z zakupionych usług idą bezpośrednio do wirtualnego portfela na hostingu lvlup.pro. Dzięki temu właściciel może opłacić serwer za zebrane środki.<br>
 Z kodem **NIGHTLAND.PL** zniżka **-13%** na zakup VPS KVM w [lvlup.pro](https://lvlup.pro).
 
 # Wymagania
 
-Sklep można zainstalować na serwerze VPS lub dedykowanym oraz na hostingu z NodeJS. **NIE POTRZEBUJESZ** żadnej bazy danych ani PHP.
+Sklep można zainstalować na serwerze VPS lub dedykowanym oraz na hostingu z NodeJS. **NIE POTRZEBUJESZ** żadnej bazy MySQL ani PHP.
 
 # Instalacja na serwerze VPS lub dedykowanym
 
-Najpierw należy pobrać pliki, po czym wypakować i wgrać na serwer. Następnie należy zainstalować NodeJS. W przypadku systemu Ubuntu, można skorzystać na przykład z [tego poradnika](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04).
+Najpierw należy pobrać pliki, po czym wypakować i wgrać na serwer. Następnie należy zainstalować NodeJS (najlepiej najnowszą wersję). W przypadku systemu Ubuntu, można skorzystać na przykład z [tego poradnika](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) (zainstaluj najnowszą wersję przy użyciu NVM).
 
 Następnie należy przejść do katalogu w którym znajdują się pliki sklepu, po czym wpisać:
 
@@ -28,7 +28,7 @@ Po tym, wszystko powinno być już zainstalowane. Teraz można przejść do konf
 Należy otworzyć plik `config.json`, po czym ustawić w nim następujące wartości: (* gwiazdką oznaczono wartości, które domyślnie są puste, ale wymagane jest ich podanie)
 
 * **PORT**<br>
-Port na którym będzie uruchamiany serwer. Nie zmieniaj tego, chyba że pojawia się problemy z uruchomieniem (szczegóły w ostatniej sekcji).
+Port na którym będzie uruchamiany serwer. Nie zmieniaj tego, chyba że pojawią się problemy z uruchomieniem (szczegóły w sekcji z rozwiązywaniem problemów).
 * **BREAK**<br>
 Tryb przerwy technicznej. Gdy jest ustawione na `true`, nikt nie będzie mógł dokonać zakupu. Nie zmieniaj tego bez potrzeby.
 * **TERMSFILE**<br>
@@ -62,7 +62,7 @@ Przykład:<br>
 Przykład:<br>
 `"background": "images/background.png",`
 * **COLOR** *<br>
-Kolor, jest wykorzystywany w tzw. embedach (np. po wysłaniu linku na Discordzie), przez przeglądarki oraz do kilku elementów na stronie. Najlepiej w formacie #FFFFFF.<br>
+Kolor, jest wykorzystywany w tzw. embedach (np. po wysłaniu linku na Discordzie), przez przeglądarki oraz do kilku elementów na stronie. Najlepiej w formacie HEX.<br>
 Przykład:<br>
 `"color": "#006666",`
 * **SERVER_ADDRESS** *<br>
@@ -90,7 +90,7 @@ Przykład:<br>
 ## Sekcja "important"
 
 * **LVLUPTOKEN** *<br>
-Klucz do API twojego konta lvlup.pro (ten długi). Znajdziesz go w panelu lvlup.pro. Zaleca się resetowanie go co jakiś czas. **PAMIĘTAJ!** Nie podawaj nikomu tego klucza i chroń go. Udostępnienie go osobie trzeciej da jej pełny dostęp do twojego konta, w tym także twoich serwerów.<br>
+Klucz do API twojego konta lvlup.pro (ten długi). Znajdziesz go w panelu lvlup.pro. Zaleca się resetowanie go co jakiś czas. **PAMIĘTAJ!** Nie podawaj nikomu tego klucza i chroń go. Udostępnienie go osobie trzeciej da jej dostęp do twojego konta, w tym także twoich serwerów.<br>
 Przykład:<br>
 `"lvluptoken": "ABC123XYZ987QWERTY456",`
 * **COMMANDS** *<br>
@@ -118,7 +118,7 @@ Wymagane tylko w przypadku, jeśli wyżej wybrałeś metodę wykonywania komend 
         },
         ```
 * **RCON**<br>
-Wymagane tylko w przypadku, jeśli wyżej wybrałeś metodę wykonywania komend poprzez RCON. Jeśli wybrałeś API Pterodactyla, pozostaw puste i przejdź dalej. Pamiętaj, że domyślnie RCON jest wyłączone i aby z niego korzystać, musisz go włączyć w `server.properties`.<br>
+Wymagane tylko w przypadku, jeśli wyżej wybrałeś metodę wykonywania komend poprzez RCON. Jeśli wybrałeś API Pterodactyla, pozostaw puste i przejdź dalej. Pamiętaj, że domyślnie RCON jest wyłączony i aby z niego korzystać, musisz go włączyć w `server.properties`.<br>
     * **IP** *<br>
     Tu należy podać adres serwera.<br>
     * **PORT** *<br>
@@ -193,7 +193,7 @@ Przykład:<br>
 Przykład:<br>
 `"image": "images/image.png",`
 * **PRICE** *<br>
-Cena netto usługi. Tyle otrzymasz na swoje konto w lvlup.pro gdy ktoś zakupi usługę. Całkowita cena zakupu jednak będzie większa (w zależności od metody płatności). **PAMIĘTAJ!** Cena musi być liczbą całkowitą, należy ją podać bez cudzysłowi.<br>
+Cena netto usługi. Tyle otrzymasz na swoje konto w lvlup.pro gdy ktoś zakupi usługę. Całkowita cena zakupu jednak będzie większa (w zależności od metody płatności). **PAMIĘTAJ!** Cena musi być liczbą całkowitą, należy ją podać bez cudzysłowów.<br>
 Przykład:<br>
 `"price": 20,`
 * **COMMANDS** *<br>
@@ -228,7 +228,8 @@ screen -dmS itemshop node app.js
 ```
 (_itemshop_ to nazwa, którą możesz zmienić)</br><br>
 Następnie wpisz w przeglądarce adres, który podano w konfiguracji. Strona powinna działać prawidłowo.<br>
-Jeśli na stronie wyświetlił się błąd, najprawdopodobniej coś zostało niepoprawnie skonfigurowane. Należy to poprawić zgodnie z instrukcją.
+Jeśli na stronie wyświetlił się błąd, najprawdopodobniej coś zostało niepoprawnie skonfigurowane. Należy to poprawić zgodnie z instrukcją.<br>
+Jeżeli strona nie odczytała plików CSS itp, upewnij się, że w pliku `config.json` podano URL z przedrostkiem `http://` lub `https://` oraz że na końcu jest ukośnik `/`.
 * Aby po zalogowaniu do SSH przejść do konsoli strony, użyj `screen -r itemshop`. To zadziała jeśli strona została uruchomiona za pomocą screen.<br>
 * Aby wyłączyć aplikację, będąc w konsoli użyj kombinacji `CTRL + C`.<br>
 * Pamiętaj, że jeśli wyłączysz stronę, osoby, które dokonywały w tym czasie zakupu, nie otrzymają swojej usługi. Strona powinna działać stabilnie.<br>
@@ -238,7 +239,7 @@ Jeśli na stronie wyświetlił się błąd, najprawdopodobniej coś zostało nie
 
 ## Listen EADDRINUSE: address already in use :::80
 
-Ten błąd może się pojawić przy próbie uruchomienia strony. Dzieje się tak dlatego, że na toim serwerze port **80** jest już zajęty przez inną aplikację.<br><br>
+Ten błąd może się pojawić przy próbie uruchomienia strony. Dzieje się tak dlatego, że na twoim serwerze port **80** jest już zajęty przez inną aplikację.<br><br>
 
 Sposób naprawy:<br>
 1. Należy zmienić port strony w pliku `config.json`. Na potrzeby poradnika, będzie to **2345**.
@@ -309,7 +310,7 @@ Sposób naprawy:<br>
     Jeżeli w tym momencie nie pojawił się żaden błąd, to znaczy że wszystko powinno działać jak należy.<br>
     Pamiętaj, jeśli zdecydowałeś się na użycie SSL, pamiętaj o zamienieniu linku do strony w `config.json` tak, aby miał on przedrostek `https://`.
 
-Jeśli występuje jakiś inny błąd, którego tutaj nie ma lub masz pytanie dotyczące projektu, możesz dołączyc do naszego serwera [Discord](https://discord.gg/Zdk5ENd).
+Jeśli występuje jakiś inny błąd, którego tutaj nie ma lub masz pytanie dotyczące projektu, możesz dołączyć do naszego serwera [Discord](https://discord.gg/Zdk5ENd).
 
 # Wygląd
 

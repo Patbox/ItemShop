@@ -127,6 +127,8 @@ a.buy-button {
 input[type="text"] {
     text-align: center;
     opacity: 0.85;
+    margin: 0 auto;
+    width: 70%;
 }
 
 #name {

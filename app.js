@@ -20,8 +20,9 @@ let cache = {};
 const app = express();
 const nodeactyl = node.Client;
 const hook = new Webhook(config.webhook.url);
+let lvlup = null;
 if(config.important.lvluptoken) {
-    const lvlup = new lvlupApi(config.important.lvluptoken);
+    lvlup = new lvlupApi(config.important.lvluptoken);
 }
 
 app.use(express.static("assets"));

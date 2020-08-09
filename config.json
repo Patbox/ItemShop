@@ -1,5 +1,5 @@
 {
-	"_comment": "Poradnik dotyczący instalacji oraz konfiguracji znajdziesz w pliku README.MD | W URL na końcu musi być ukośnik (/) | Pamiętaj o zachowaniu poprawności pliku JSON | Usługi skonfigurujesz w pliku services.json",
+	"_comment": "Poradnik dotyczący instalacji oraz konfiguracji znajdziesz tutaj: https://github.com/0zelot/ItemShop | W URL na końcu musi być ukośnik (/) | Pamiętaj o zachowaniu poprawności pliku JSON | Usługi skonfigurujesz w pliku services.json",
 
 	"port": 80,
 	"break": false,
