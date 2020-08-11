@@ -1,7 +1,6 @@
 //
 // https://github.com/0zelot
 //
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -11,6 +10,11 @@ const lvlupApi = require("lvlup-js");
 const node = require("nodeactyl-beta");
 const librcon = require("librcon");
 const { Webhook, MessageBuilder } = require("discord-webhook-node");
+
+const utils = require("./utils.js");
+const log = utils.log;
+const checkConfig = utils.checkConfig;
+const checkBreak = utils.checkBreak;
 
 const config = require("./config.json");
 const services = require("./services.json");
@@ -30,65 +34,17 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
-if(config.important.commands == "pterodactyl") {
-    nodeactyl.login(config.important.pterodactyl.url, config.important.pterodactyl.key, (logged_in) => {
-        if(logged_in == true) {
-            log("Pomyślnie połączono z API Pterodactyla.");
-        } else {
-            log("Nie udało się połączyć z API Pterodactyla.");
-        }
-    });
-}
-
-async function log(text) {
-    console.log("» [" + moment(Date.now()).locale("pl").format("DD.MM.YYYY HH:mm")+ "] " + text + "");
-}
-
-async function checkBreak(req, res, next) {
-    if(config.break == false) return next();
-    await res.render("pages/break", {site: config.sites.break, general: config.general, navbar: config.navbar});
-}
-
-async function checkConfig(req, res, next) {
-    let error = null;
-    if(!config.general.url || !config.general.name || !config.general.color || !config.general.server_address || !config.important.lvluptoken) {
-        error = 1;
-    } else if(config.important.commands == "rcon" && (!config.important.rcon.ip || !config.important.rcon.port || !config.important.rcon.password)) {
-        error = 2.1;
-    } else if(config.important.commands == "pterodactyl" && (!config.important.pterodactyl.url || !config.important.pterodactyl.key || !config.important.pterodactyl.server)) {
-        error = 2.2;
-    } else if(config.important.commands !== "pterodactyl" && config.important.commands !== "rcon") {
-        error = 2.3;
-    } else {
-        let serviceerror = false;
-        for(const service in services) {
-            if(!services[service].name || !services[service].description || !services[service].image || !services[service].price || !services[service].commands || typeof(services[service].price) !== "number") {
-                error = 3;
-                serviceerror = true;
-                break;
-            } else if((services[service].name).length >= config.general.service_name_limit) {
-                error = 4;
-                serviceerror = true;
-                break;
-            }
-        }
-        if(error == null && serviceerror == false) return next();
-    }
-    await res.render("pages/error", {site: config.sites.break, general: config.general, navbar: config.navbar, error: error});
-    log("Poczas próby załadowania strony wystąpił błąd (" + error + "). Na stronie pojawiła się informacja z instrukcją naprawy błędu.")
-}
-
 app.get("/", checkBreak, checkConfig, function(req, res) {
     let purchases = JSON.parse(fs.readFileSync("./purchases.json"));
     fs.readFile(config.rightsidepanel, "utf8", function (err, rightsidepanel) {
-        res.render("pages/shop", {site: config.sites.shop, general: config.general, navbar: config.navbar, services: services, purchases: purchases, rightsidepanel: rightsidepanel});
+        res.render("pages/shop", {site: config.sites.shop, general: config.general, navbar: config.navbar, services, purchases, rightsidepanel});
     });
 });
 
 app.get("/usluga" + "/:id", checkBreak, checkConfig, function(req, res, err) {
     if(services[req.params.id]) {
         let purchases = JSON.parse(fs.readFileSync("./purchases.json"));
-        res.render("pages/service", {site: config.sites.shop, general: config.general, navbar: config.navbar, id: req.params.id, service: services[req.params.id], purchases: purchases});
+        res.render("pages/service", {site: config.sites.shop, general: config.general, navbar: config.navbar, id: req.params.id, service: services[req.params.id], purchases});
     } else {
         return res.status(404).render("pages/404", {site: config.sites.shop, general: config.general, navbar: config.navbar});
     }
@@ -106,8 +62,8 @@ app.post("/usluga" + "/:id", checkBreak, checkConfig, async function(req, res, e
         price: services[response.service].price,
         date: Date.now()
     };
-    let checkdetails = "<p class='text-error'>Trwa zakup usługi <b>" + services[response.service].name + "</b> na nick <b>" + response.name + "</b>. Proszę czekać.</p><script>window.location = '" + linkForPayment.url + "'</script>"
-    res.render("pages/checking", {site: config.sites.shop, general: config.general, navbar: config.navbar, checkdetails: checkdetails});
+    const checkdetails = "<p class='text-error'>Trwa zakup usługi <b>" + services[response.service].name + "</b> na nick <b>" + response.name + "</b>. Proszę czekać.</p><script>window.location = '" + linkForPayment.url + "'</script>"
+    res.render("pages/checking", {site: config.sites.shop, general: config.general, navbar: config.navbar, checkdetails});
 });
 
 app.post("/platnosc", async function(req, res, next) {
@@ -124,9 +80,7 @@ app.post("/platnosc", async function(req, res, next) {
             });
             fs.writeFileSync("./purchases.json", JSON.stringify(purchases, null, 1));
             if(config.webhook.url) {
-                let text = config.webhook.text;
-                text = text.replace("[PLAYER]", cache[req.body.paymentId].name);
-                text = text.replace("[SERVICE]", services[cache[req.body.paymentId].service].name);
+                const text = (config.webhook.text).replace("[PLAYER]", cache[req.body.paymentId].name).replace("[SERVICE]", services[cache[req.body.paymentId].service].name);
                 const embed = await new MessageBuilder()
                     .setTitle(config.webhook.title)
                     .setURL(config.general.url)
@@ -168,7 +122,7 @@ app.get("/platnosc", checkBreak, checkConfig, function(req, res) {
 
 app.get("/regulamin", checkBreak, checkConfig, function(req, res) {
     fs.readFile(config.termsfile, "utf8", function (err, termsfile) {
-        res.render("pages/terms", {site: config.sites.terms, general: config.general, navbar: config.navbar, termsfile: termsfile});
+        res.render("pages/terms", {site: config.sites.terms, general: config.general, navbar: config.navbar, termsfile});
     });
 });
 
@@ -182,4 +136,13 @@ app.use(function(req, res, next) {
 
 app.listen(config.port, function() {
     log("Strona uruchomiona na porcie " + config.port + ".");
+    if(config.important.commands == "pterodactyl") {
+        nodeactyl.login(config.important.pterodactyl.url, config.important.pterodactyl.key, (logged_in) => {
+            if(logged_in == true) {
+                log("Pomyślnie połączono z API Pterodactyla.");
+            } else {
+                log("Nie udało się połączyć z API Pterodactyla.");
+            }
+        });
+    }
 });
