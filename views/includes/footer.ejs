@@ -1,12 +1,14 @@
 <footer>
     <p class="footer text-center">
-        <% if(general.name) { %>
-            <span><%- general.name %></span>
-        <% } else { %>
-            <span>xyz</span>
-        <% } %>
-        <script>document.write(new Date().getFullYear())</script>
-        <span>- stworzone przez <a href="https://github.com/0zelot">Ozelot</a>.</span>
+        <span class="align">
+            <% if(general.name) { %>
+                <span><%- general.name %></span>
+            <% } else { %>
+                <span>xyz</span>
+            <% } %>
+            <script>document.write(new Date().getFullYear())</script>
+        </span>
+        <span class="add-label">Stworzone przez <a href="https://github.com/0zelot">Ozelot</a>.</span>
     </p>
 </footer>
 <%- include("../includes/style"); -%>

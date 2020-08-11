@@ -12,6 +12,18 @@ footer {
     height: 1.8rem;
 }
 
+footer:hover span.align{
+    display: none;
+}
+
+footer:hover span.add-label{
+    display: inline-block;
+}
+
+footer span.add-label{
+    display: none;
+}
+
 div.error {
     margin: 0;
     position: absolute;
