@@ -315,4 +315,6 @@ Jeśli występuje jakiś inny błąd, którego tutaj nie ma lub masz pytanie dot
 # Wygląd
 
 ![](https://i.imgur.com/Zl8i4he.png)
-Tak wygląda strona główna skonfigurowanego sklepu.
+Tak wygląda strona główna skonfigurowanego sklepu.<br>
+
+### Możesz także zobaczyć wersję demonstracyjną na żywo odwiedzając [tę stronę](https://demo.mcpc.pl/).
