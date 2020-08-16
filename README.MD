@@ -11,17 +11,23 @@ Sklep można zainstalować na serwerze VPS lub dedykowanym oraz na hostingu z No
 
 # Instalacja na serwerze VPS lub dedykowanym
 
-Najpierw należy pobrać pliki, po czym wypakować i wgrać na serwer. Następnie należy zainstalować NodeJS (najlepiej najnowszą wersję). W przypadku systemu Ubuntu, można skorzystać na przykład z [tego poradnika](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) (zainstaluj najnowszą wersję przy użyciu NVM).
+Najpierw należy zainstalować **NodeJS** (najlepiej najnowszą wersję) oraz **npm**. W przypadku systemu Ubuntu, można skorzystać na przykład z [tego poradnika](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) (zainstaluj najnowszą wersję przy użyciu NVM).
 
-Następnie należy przejść do katalogu w którym znajdują się pliki sklepu, po czym wpisać:
+Kolejnym krokiem jest zainstalowanie **pm2** (jeśli nie posiadamy). W tym celu należy wpisać kilka komend:<br>
+1. `npm install pm2 -g` (instalacja)
+2. `pm2 startup` (uruchomienie)
+3. `pm2 set pm2:autodump true` (automatyczne uruchomienie po restarcie serwera)
 
-```
-npm install
-```
+Następnie można użyć pliku startowego, który znajduje się [tutaj](https://github.com/0zelot/ItemShop). Wystarczy że go pobierzesz i wgrasz na serwer w katalogu, gdzie chcesz zainstalować sklep, lub utworzysz plik o takiej nazwie i rozszerzeniu, po czym skopiujesz i wkleisz treść. W tym pliku można także wyłączyć automatyczne aktualizacje sklepu, jednak zalecane jest ich pozostawienie, aby być na bieżąco z nowościami i poprawkami.
 
-Zainstaluje to wszystkie potrzebne biblioteki. Przed tym warto upewnić się, że wśród plików jest `package.json`.
+Teraz należy uruchomić instalator, który sam pobierze wszystkie pliki strony oraz potrzebne biblioteki. W tym celu, będąc w katalogu, w którym wgrano wyżej wspomniany plik, należy wpisać: 
 
-Po tym, wszystko powinno być już zainstalowane. Teraz można przejść do konfiguracji.
+`./itemshop.sh install`
+
+Jeżeli pojawił się komunikat o braku uprawnień, wpisz `chmod +x ./itemshop.sh` i powtórz czynność.
+
+Stronę będzie można uruchomić również poprzez plik startowy - `./itemshop.sh start`, jednak na razie tego nie rób - sklep wymaga skonfigurowania.
+
 
 # Konfiguracja
 
@@ -222,17 +228,18 @@ Pamiętaj o zachowaniu poprawności pliku JSON, ponieważ w innym razie, sklep s
 
 # Uruchomienie sklepu
 
-Po skonfigurowaniu możesz uruchomić stronę. Aby strona działała cały czas, należy uruchomić ją np. za pomocą `screen`. W tym celu przejdź do katalogu, w którym znajdują się pliki i wpisz:
+Po skonfigurowaniu możesz uruchomić stronę. Aby strona działała cały czas, należy ją uruchomić. W tym celu, przejdź do katalogu w którym znajduje się plik startowy oraz pliki strony, po czym wpisz:
 ```
-screen -dmS itemshop node app.js
+./itemshop.sh start
 ```
-(_itemshop_ to nazwa, którą możesz zmienić)</br><br>
-Następnie wpisz w przeglądarce adres, który podano w konfiguracji. Strona powinna działać prawidłowo.<br>
+Aby sprawdzić, czy strona uruchomiła się poprawnie, otwórz logi aplikacji komendą `pm2 logs itemshop` lub wpisz w przeglądarce adres, który podano w konfiguracji.
+
 Jeśli na stronie wyświetlił się błąd, najprawdopodobniej coś zostało niepoprawnie skonfigurowane. Należy to poprawić zgodnie z instrukcją.<br>
 Jeżeli strona nie odczytała plików CSS itp, upewnij się, że w pliku `config.json` podano URL z przedrostkiem `http://` lub `https://` oraz że na końcu jest ukośnik `/`.
-* Aby po zalogowaniu do SSH przejść do konsoli strony, użyj `screen -r itemshop`. To zadziała jeśli strona została uruchomiona za pomocą screen.<br>
-* Aby wyłączyć aplikację, będąc w konsoli użyj kombinacji `CTRL + C`.<br>
-* Pamiętaj, że jeśli wyłączysz stronę, osoby, które dokonywały w tym czasie zakupu, nie otrzymają swojej usługi. Strona powinna działać stabilnie.<br>
+* Aby po zalogowaniu do SSH przejść do logów strony, użyj `pm2 logs itemshop`.<br>
+* Aby wyłączyć aplikację, użyj `pm2 stop itemshop`.<br>
+* Aby zrestartować aplikację, użyj `pm2 restart itemshop`.<br>
+* Pamiętaj, że jeśli wyłączysz aplikację, osoby, które dokonywały w tym czasie zakupu, nie otrzymają swojej usługi. Strona musi działać stabilnie.<br>
 * Pamiętaj, żeby po każdej zmianie w plikach konfiguracyjnych zrestartować aplikację.
 
 # Rozwiązywanie problemów
