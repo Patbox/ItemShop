@@ -18,7 +18,7 @@ Kolejnym krokiem jest zainstalowanie **pm2** (jeśli nie posiadamy). W tym celu 
 2. `pm2 startup` (uruchomienie)
 3. `pm2 set pm2:autodump true` (automatyczne uruchomienie po restarcie serwera)
 
-Następnie można użyć pliku startowego, który znajduje się [tutaj](https://github.com/0zelot/ItemShop). Wystarczy że go pobierzesz i wgrasz na serwer w katalogu, gdzie chcesz zainstalować sklep, lub utworzysz plik o takiej nazwie i rozszerzeniu, po czym skopiujesz i wkleisz treść. W tym pliku można także wyłączyć automatyczne aktualizacje sklepu, jednak zalecane jest ich pozostawienie, aby być na bieżąco z nowościami i poprawkami.
+Następnie można użyć pliku startowego, który znajduje się [tutaj](https://github.com/0zelot/ItemShop/blob/master/itemshop.sh). Wystarczy że go pobierzesz i wgrasz na serwer w katalogu, gdzie chcesz zainstalować sklep, lub utworzysz plik o takiej nazwie i rozszerzeniu, po czym skopiujesz i wkleisz treść. W tym pliku można także wyłączyć automatyczne aktualizacje sklepu, jednak zalecane jest ich pozostawienie, aby być na bieżąco z nowościami i poprawkami.
 
 Teraz należy uruchomić instalator, który sam pobierze wszystkie pliki strony oraz potrzebne biblioteki. W tym celu, będąc w katalogu, w którym wgrano wyżej wspomniany plik, należy wpisać: 
 
