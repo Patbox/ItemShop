@@ -34,6 +34,8 @@
                 <p class="text-error">Jedna lub kilka usług zostały niepoprawnie skonfigurowane. Najprawdopodobniej nie podano jakiegoś parametru, lub podano cenę z cudzysłowiami (musi być bez). Należy to zmienić w pliku <span class="badge badge-danger">services.json</span>.</p>
             <% } else if(error == 4) { %>
                 <p class="text-error">Nazwa jednej lub kilku usług jest zbyt długa. Nie może ona przekraczać 12 znaków. Należy to zmienić w pliku <span class="badge badge-danger">services.json</span>. Opcjonalnie, jeżeli naprawdę potrzebujesz dłuższej nazwy, zwiększ limit w pliku <span class="badge badge-danger">config.json</span> - GENERAL -> SERVICE_NAME_LIMIT, jednak pamiętaj, że dłuższe nazwy mogą wpłynąć na estetyczność strony.</p>
+            <% } else if(error == 5) { %>
+                <p class="text-error">Ustawiono metodę zapisu danych o zakupach jako  <span class="badge badge-info">mysql</span>, ale nie podano danych do logowania do bazy danych. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
             <% } else { %>
                 <p class="text-error">Ten błąd nie został przewidziany...</p>
             <% } %>
