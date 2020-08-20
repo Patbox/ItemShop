@@ -1,7 +1,9 @@
 const moment = require("moment");
 
-const config = require("./config.json");
-const services = require("./services.json");
+const index = require("../app.js");
+
+const config = require("../config.json");
+const services = require("../services.json");
 
 async function checkConfig(req, res, next) {
     let error = null;
@@ -13,6 +15,8 @@ async function checkConfig(req, res, next) {
         error = 2.2;
     } else if(config.important.commands !== "pterodactyl" && config.important.commands !== "rcon") {
         error = 2.3;
+    } else if(config.important.purchases == "mysql" && !config.important.database.host || !config.important.database.user || !config.important.database.password || !config.important.database.database || !config.important.database.table) {
+        error = 5;
     } else {
         let serviceerror = false;
         for(const service in services) {

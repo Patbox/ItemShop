@@ -38,7 +38,7 @@
                             <% if(general.last_buyers !== 0) { %>
                                 <span id="name">Ostatnie zakupy</span><br>
                                 <div class="row">
-                                    <% for(const user in purchases) { %>
+                                    <% for(const user in purchases.reverse()) { %>
                                         <% if(user < general.last_buyers) { %>
                                             <div class="row purchase">
                                                 <div class="col-4">

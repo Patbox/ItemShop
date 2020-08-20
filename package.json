@@ -12,6 +12,7 @@
     "librcon": "^1.0.3",
     "fs": "^0.0.1-security",
     "nodeactyl-beta": "^0.0.10",
+    "mysql": "^2.18.1",
     "moment": "^2.27.0"
   },
   "devDependencies": {},

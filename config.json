@@ -22,6 +22,7 @@
 	},
 	"important": {
 		"lvluptoken": "",
+		"purchases": "json",
 		"commands": "pterodactyl / rcon (!)",
 		"pterodactyl": {
 			"url": "",
@@ -32,6 +33,13 @@
 			"ip": "",
 			"port": 25575,
 			"password": ""
+		},
+		"database": {
+			"host": "",
+			"user": "",
+			"password": "",
+			"database": "",
+			"table": "itemshop_purchases"
 		}
 	},
 	"webhook": {

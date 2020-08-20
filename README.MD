@@ -107,6 +107,12 @@ Przykład #1:<br>
 `"commands": "pterodactyl",`<br>
 Przykład #2:<br>
 `"commands": "rcon",`<br>
+* **PURCHASES**<br>
+Sposób zapisu danych o zakupach. Dostępne są **json** (domyślnie) oraz **mysql**. Aby używać zapisu w bazie danych MySQL należy w bazie danych ręcznie utworzyć tabelę. Jej struktura znajduja się w pliku `table.sql`.<br>
+Przykład #1:<br>
+`"purchases": "json",`<br>
+Przykład #2:<br>
+`"purchases": "mysql",`<br>
 * **PTERODACTYL**<br>
 Wymagane tylko w przypadku, jeśli wyżej wybrałeś metodę wykonywania komend poprzez API Pterodactyla. Jeśli wybrałeś RCON, pozostaw puste i przejdź do następnego podpunktu.<br>
     * **URL** *<br>
@@ -139,6 +145,17 @@ Wymagane tylko w przypadku, jeśli wyżej wybrałeś metodę wykonywania komend 
             "password": "XYZ123ABC987SUPERTAJNEHASLO"
         }
         ```
+* **DATABASE**<br>
+Jeśli zdecydowałeś się na zapis historii zakupów w bazie danych **MySQL**, należy podać tutaj poprawne dana do logowania do bazy danych. Jeśli pozostałeś przy zapisie w **JSON**, nie musisz tu nic wpisywać.<br>
+Przykład:<br>
+    ```
+	"database": {
+		"host": "mysql.example.com",
+		"user": "root",
+		"password": "xyz123abc",
+		"database": "s1_database",
+		"table": "itemshop_purchases"
+    ```
 
 ## Sekcja "webhook"
 
