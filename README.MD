@@ -13,21 +13,15 @@ Sklep można zainstalować na serwerze VPS lub dedykowanym oraz na hostingu z No
 
 Najpierw należy zainstalować **NodeJS** (najlepiej najnowszą wersję) oraz **npm**. W przypadku systemu Ubuntu, można skorzystać na przykład z [tego poradnika](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) (zainstaluj najnowszą wersję przy użyciu NVM).
 
-Kolejnym krokiem jest zainstalowanie **pm2** (jeśli nie posiadamy). W tym celu należy wpisać kilka komend:<br>
-1. `npm install pm2 -g` (instalacja)
-2. `pm2 startup` (uruchomienie)
-3. `pm2 set pm2:autodump true` (automatyczne uruchomienie po restarcie serwera)
+Do uruchomienia aplikacji użyjemy **pm2**. Należy je zainstalować (jeśli nie posiadamy). W tym celu należy wpisać kilka komend:<br>
+1. `npm install pm2 -g`
+2. `pm2 startup`
 
-Następnie można użyć pliku startowego, który znajduje się [tutaj](https://github.com/0zelot/ItemShop/blob/master/itemshop.sh). Wystarczy że go pobierzesz i wgrasz na serwer w katalogu, gdzie chcesz zainstalować sklep, lub utworzysz plik o takiej nazwie i rozszerzeniu, po czym skopiujesz i wkleisz treść. W tym pliku można także wyłączyć automatyczne aktualizacje sklepu, jednak zalecane jest ich pozostawienie, aby być na bieżąco z nowościami i poprawkami.
+Teraz należy pobrać pliki. W tym celu możesz użyć komendy `git clone https://github.com/0zelot/ItemShop.git` (pobierze automatycznie pliki do katalogu, w którym się znajdujesz) lub po prostu ręcznie pobrać pliki i wgrać je na serwer.
 
-Teraz należy uruchomić instalator, który sam pobierze wszystkie pliki strony oraz potrzebne biblioteki. W tym celu, będąc w katalogu, w którym wgrano wyżej wspomniany plik, należy wpisać: 
+Jeśli wszystkie pliki znajdują się już na serwerze, znajdując się w katalogu aplikacji, wpisz `npm install`. Zainstaluje to wszystkie potrzebne biblioteki.
 
-`./itemshop.sh install`
-
-Jeżeli pojawił się komunikat o braku uprawnień, wpisz `chmod +x ./itemshop.sh` i powtórz czynność.
-
-Stronę będzie można uruchomić również poprzez plik startowy - `./itemshop.sh start`, jednak na razie tego nie rób - sklep wymaga skonfigurowania.
-
+Po wykonaniu tych czynności, sklep został zainstalowany. Teraz należy go skonfigurować.
 
 # Konfiguracja
 
@@ -245,11 +239,11 @@ Pamiętaj o zachowaniu poprawności pliku JSON, ponieważ w innym razie, sklep s
 
 # Uruchomienie sklepu
 
-Po skonfigurowaniu możesz uruchomić stronę. Aby strona działała cały czas, należy ją uruchomić. W tym celu, przejdź do katalogu w którym znajduje się plik startowy oraz pliki strony, po czym wpisz:
-```
-./itemshop.sh start
-```
-Aby sprawdzić, czy strona uruchomiła się poprawnie, otwórz logi aplikacji komendą `pm2 logs itemshop` lub wpisz w przeglądarce adres, który podano w konfiguracji.
+Po skonfigurowaniu możesz uruchomić stronę. W tym celu wpisz:<br>
+`pm2 start app.js --name itemshop`<br>
+(_itemshop_ to przykładowa nazwa, którą możesz zmienić)
+
+Aby sprawdzić, czy strona uruchomiła się poprawnie, otwórz logi aplikacji komendą `pm2 logs itemshop` lub wpisz w przeglądarce adres, który podano w konfiguracji. Zalecane jest 
 
 Jeśli na stronie wyświetlił się błąd, najprawdopodobniej coś zostało niepoprawnie skonfigurowane. Należy to poprawić zgodnie z instrukcją.<br>
 Jeżeli strona nie odczytała plików CSS itp, upewnij się, że w pliku `config.json` podano URL z przedrostkiem `http://` lub `https://` oraz że na końcu jest ukośnik `/`.
@@ -335,6 +329,20 @@ Sposób naprawy:<br>
     Pamiętaj, jeśli zdecydowałeś się na użycie SSL, pamiętaj o zamienieniu linku do strony w `config.json` tak, aby miał on przedrostek `https://`.
 
 Jeśli występuje jakiś inny błąd, którego tutaj nie ma lub masz pytanie dotyczące projektu, możesz dołączyć do naszego serwera [Discord](https://discord.gg/Zdk5ENd).
+
+# Aktualizacja do nowszej wersji
+
+Aby bezpiecznie zaktualizować sklep do nowszej wersji, należy wykonać kilka czynności.
+Najpierw wyłącz aplikację i wykonaj jej kopię zapasową. Jeżeli nie chcesz utracić swojej konfiguracji, usług czy historii zakupów, musisz pamiętać o wcześniejszym skopiowaniu następujących plików:
+* config.json
+* services.json
+* purchases.json (chyba ze korzystasz z bazy danych)
+
+Po tym, należy pobrać nową wersję. W tym celu możesz użyć komendy `git clone https://github.com/0zelot/ItemShop.git` (pobierze automatycznie pliki do katalogu, w którym się znajdujesz) lub po prostu ręcznie pobrać pliki i wgrać je na serwer. Przed tym pamiętaj o usunięciu starych plików.
+
+Jeżeli masz już nową wersję, kolejnym krokiem jest przywrócenie trzech w/w plików. Należy mieć na uwadze, że plik `config.json` po aktualizacji mógł ulec zmianie, dlatego nie należy go bezmyślnie zastępować starym. 
+
+Ostatnim krokiem będzie wpisanie komendy `npm install` oraz uruchomienie sklepu.
 
 # Wygląd
 

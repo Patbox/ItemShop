@@ -12,6 +12,7 @@ const functions = require("./utils/functions.js");
 const log = functions.log;
 const checkConfig = functions.checkConfig;
 const checkBreak = functions.checkBreak;
+const checkUpdate = functions.checkUpdate;
 
 const config = require("./config.json");
 const services = require("./services.json");
@@ -37,6 +38,10 @@ app.listen(config.port, function() {
             }
         });
     }
+    checkUpdate();
+    setInterval(async () => {
+        checkUpdate();
+    }, 86400000);
 });
 
 fs.readdirSync("./routes/").forEach(function(file) {

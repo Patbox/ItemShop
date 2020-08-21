@@ -1,7 +1,10 @@
 const moment = require("moment");
+const colors = require("colors");
+const fetch = require("node-fetch");
 
 const index = require("../app.js");
 
+const package = require("../package.json");
 const config = require("../config.json");
 const services = require("../services.json");
 
@@ -42,7 +45,20 @@ async function checkBreak(req, res, next) {
 }
 
 async function log(text) {
-    console.log("» [" + moment(Date.now()).locale("pl").format("DD.MM.YYYY HH:mm")+ "] " + text + "");
+    console.log("»".gray + " [" + moment(Date.now()).locale("pl").format("DD.MM.YYYY HH:mm")+ "] " + text.yellow + "");
 }
 
-module.exports = {log, checkConfig, checkBreak}
+async function checkUpdate() {
+    await fetch("https://raw.githubusercontent.com/0zelot/ItemShop/master/package.json").then(async response => response.json().then(async res => {
+        if(package.version == res.version) {
+            log("Posiadasz aktualną wersję sklepu.".green + " (".gray + package.version.brightGreen + ")".gray);
+        } else {
+            log("Posiadasz nieaktualną wersję sklepu! Najnowsza wersja to ".red + res.version.brightRed + " a ty posiadasz ".red + package.version.brightRed + ".".red);
+            log("Poradnik dotyczący aktualizacji znajdziesz w pliku README.MD".red + ": ".gray + "https://github.com/0zelot/ItemShop".brightYellow);
+        }
+    })).catch(async err => {
+        log("Wystapił problem podczas sprawdzania aktualizacji:\n" + err);
+    });
+}
+
+module.exports = {log, checkConfig, checkBreak, checkUpdate}
