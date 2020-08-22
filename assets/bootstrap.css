@@ -159,7 +159,6 @@ a {
 }
 
 a:hover {
-  color: #0056b3;
   text-decoration: underline;
 }
 
@@ -4732,7 +4731,6 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -4761,7 +4759,9 @@ input[type="button"].btn-block {
 }
 
 .card-title {
-  margin-bottom: 0.75rem;
+  margin-top: -15px;
+  margin-bottom: 0.55rem;
+  font-size: 135%;
 }
 
 .card-subtitle {

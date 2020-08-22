@@ -12,13 +12,12 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-sm-3 text-center">
-                        <img class="img-fluid horizontal-card-image" src="../<%= service.image %>">
-                        <p><%= service.description %></p>
+                    <div class="col-md-5 text-center">
+                        <img class="img-service" src="../<%= service.image %>">
+                        <p class="mt-3"><%= service.description %></p>
                         <p>Tę usługę zakupiono już <span class="badge badge-info"><%= purchases.filter(pur_amount => pur_amount.service == id).length %></span> razy.</p>
                     </div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-5 text-center">
+                    <div class="col-md-6 text-center">
                         <div class="tab-content text-center service-tabs mt-3">
                             <p>Zakup usługę przy użyciu dowolnej metody płatności.</p>
                             <span class="badge badge-secondary"><i class="fas fa-lock"></i> PaySafeCard: <%= (service.price+0.14*service.price).toFixed(2) %> zł</span>
@@ -37,6 +36,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

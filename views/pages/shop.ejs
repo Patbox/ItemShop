@@ -8,22 +8,28 @@
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <% for(const service in services) { %>
-                            <div class="service-item row">
-                                <div class="col-md-3">
-                                    <img class="service-list img-fluid horizontal-card-image" src="<%= services[service].image %>"></div>
-                                <div class="col-md-9">
-                                    <span class="service-name"><%= services[service].name %></span><br>
-                                    <span><%= services[service].description %></span><br>
-                                    <span>Tę usługę zakupiono już <span class="badge badge-info"><%- purchases.filter(pur_amount => pur_amount.service == service).length %></span> razy.</span>
-                                    <div class="mt-1">
-                                        <span class="badge badge-secondary"><i class="fas fa-lock"></i> PaySafeCard: <%= (services[service].price+0.14*services[service].price).toFixed(2) %> zł</span>
-                                        <span class="badge badge-secondary"><i class="fab fa-paypal"></i> PayPal: <%= (services[service].price+0.03*services[service].price+1).toFixed(2) %> zł</span>
-                                        <span class="badge badge-secondary"><i class="far fa-credit-card"></i> Dotpay: <%= (services[service].price+0.02*services[service].price).toFixed(2) %> zł</span>
-                                        <span class="badge badge-secondary"><i class="far fa-credit-card"></i> Paynow: <%= (services[service].price).toFixed(2) %> zł</span>
+                            <div class="card mb-3 service-item">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4 text-center">
+                                        <img class="service-list" src="http://localhost/images/service.png">
                                     </div>
-                                    <a href="usluga/<%- service %>" class="btn btn-outline-secondary buy-button" role="button"><i class="fas fa-shopping-basket"></i> Wybierz</a>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%= services[service].name %></h5>
+                                            <span class="card-text"><%= services[service].description %></span><br>
+                                            <span class="card-text">Tę usługę zakupiono już <span class="badge badge-info"><%- purchases.filter(pur_amount => pur_amount.service == service).length %></span> razy.</span>
+                                            <p class="card-text">
+                                                <div class="mt-1">
+                                                    <span class="badge badge-secondary"><i class="fas fa-lock"></i> PaySafeCard: <%= (services[service].price+0.14*services[service].price).toFixed(2) %> zł</span>
+                                                    <span class="badge badge-secondary"><i class="fab fa-paypal"></i> PayPal: <%= (services[service].price+0.03*services[service].price+1).toFixed(2) %> zł</span>
+                                                    <span class="badge badge-secondary"><i class="far fa-credit-card"></i> Dotpay: <%= (services[service].price+0.02*services[service].price).toFixed(2) %> zł</span>
+                                                    <span class="badge badge-secondary"><i class="far fa-credit-card"></i> Paynow: <%= (services[service].price).toFixed(2) %> zł</span>
+                                                </div>
+                                                <a href="usluga/<%- service %>" class="btn btn-outline-secondary buy-button" role="button"><i class="fas fa-shopping-basket"></i> Wybierz</a>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                
                             </div>
                         <% } %>
                     </div>
@@ -42,7 +48,7 @@
                                         <% if(user < general.last_buyers) { %>
                                             <div class="row purchase">
                                                 <div class="col-4">
-                                                    <img class="rounded margin" src="https://minotar.net/helm/<%- purchases[user].buyer %>/48">
+                                                    <img class="rounded" src="https://minotar.net/helm/<%- purchases[user].buyer %>/48">
                                                 </div>
                                                 <div class="col-7 text-left">
                                                     <p class="purchases-buyer"><%- purchases[user].buyer %></p>

@@ -1,6 +1,6 @@
 {
   "name": "itemshop",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Prosty sklep dla serwerów gry Minecraft.",
   "main": "app.js",
   "dependencies": {
