@@ -349,4 +349,4 @@ Ostatnim krokiem będzie wpisanie komendy `npm install` oraz uruchomienie sklepu
 ![](https://i.imgur.com/Zl8i4he.png)
 Tak wygląda strona główna skonfigurowanego sklepu.<br>
 
-### Możesz także zobaczyć wersję demonstracyjną na żywo odwiedzając [tę stronę](https://demo.mcpc.pl/).
+### Możesz także zobaczyć wersję demonstracyjną na żywo odwiedzając [tę stronę](https://ozelot.gq/itemshop/).
