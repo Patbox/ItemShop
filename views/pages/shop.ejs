@@ -6,8 +6,8 @@
         <div class="container-fluid rounded">
             <div class="col-xl-10 contents">
                 <div class="row">
-                    <section>
-                        <div class="col-12 col-md-8">
+                    <div class="col-12 col-md-8">
+                        <section>
                             <% for(const service in services) { %>
                                 <div class="card mb-3 service-item">
                                     <div class="row no-gutters">
@@ -33,10 +33,10 @@
                                     </div>
                                 </div>
                             <% } %>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
+                    <div class="right-bar col-12 col-md-4 line text-center">
                         <section>
-                        <div class="right-bar col-12 col-md-4 line text-center">
                             <div onload="Get(); setInterval('Get()', 1000)">
                                 <span id="name"><%- general.name %></span><br>
                                 <span id="players"></span><br>
@@ -66,8 +66,8 @@
                             <div class="mt-2">
                                 <%- rightsidepanel %>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
