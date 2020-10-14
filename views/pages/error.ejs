@@ -18,31 +18,33 @@
     </head>
     <body>
         <%- include("../includes/navbar"); -%>
-        <div class="error text-center">
-            <p class="title-error"><i class="fas fa-exclamation-circle"></i></p>
-            <p class="minititle-error">Wystąpił nieoczekiwany błąd.</p>
-            <br>
-            <% if(error == 1) { %>
-                <p class="text-error">Sklep nie został skonfigurowany. Należy zedytować plik <span class="badge badge-danger">config.json</span> ustawiając następujące parametry w general: <span class="badge badge-info">URL</span>, <span class="badge badge-info">NAME</span>, <span class="badge badge-info">COLOR</span>, <span class="badge badge-info">SERVER_ADDRESS</span> oraz w important: <span class="badge badge-info">LVLUPTOKEN</span>.</p>
-            <% } else if(error == 2.1) { %>
-                <p class="text-error">Ustawiono metodę wykonywania komend jako <span class="badge badge-info">rcon</span>, jednak nie podano IP i portu oraz hasła. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
-            <% } else if(error == 2.2) { %>
-                <p class="text-error">Ustawiono metodę wykonywania komend jako <span class="badge badge-info">pterodactyl</span>, jednak nie podano adresu, klucza oraz ID serwera. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
-            <% } else if(error == 2.3) { %>
-                <p class="text-error">Podano niepoprawną nazwę metody wykonywania komend. Dostępne metody to <span class="badge badge-info">rcon</span> oraz <span class="badge badge-info">pterodactyl</span>. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
-            <% } else if(error == 3) { %>
-                <p class="text-error">Jedna lub kilka usług zostały niepoprawnie skonfigurowane. Najprawdopodobniej nie podano jakiegoś parametru, lub podano cenę z cudzysłowiami (musi być bez). Należy to zmienić w pliku <span class="badge badge-danger">services.json</span>.</p>
-            <% } else if(error == 4) { %>
-                <p class="text-error">Nazwa jednej lub kilku usług jest zbyt długa. Nie może ona przekraczać 12 znaków. Należy to zmienić w pliku <span class="badge badge-danger">services.json</span>. Opcjonalnie, jeżeli naprawdę potrzebujesz dłuższej nazwy, zwiększ limit w pliku <span class="badge badge-danger">config.json</span> - GENERAL -> SERVICE_NAME_LIMIT, jednak pamiętaj, że dłuższe nazwy mogą wpłynąć na estetyczność strony.</p>
-            <% } else if(error == 5) { %>
-                <p class="text-error">Ustawiono metodę zapisu danych o zakupach jako  <span class="badge badge-info">mysql</span>, ale nie podano danych do logowania do bazy danych. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
-            <% } else { %>
-                <p class="text-error">Ten błąd nie został przewidziany...</p>
-            <% } %>
-            <br>
-            <p class="text-error">Poradnik dotyczący konfiguracji znajdziesz <a href="https://github.com/0zelot/ItemShop">tutaj</a>.</p>
-            <p class="text-error">Pamiętaj, żeby po każdej zmianie w plikach konfiguracyjnych zrestartować aplikację.</p>
-        </div>
+        <main>
+            <div class="error text-center">
+                <p class="title-error"><i class="fas fa-exclamation-circle"></i></p>
+                <p class="minititle-error">Wystąpił nieoczekiwany błąd.</p>
+                <br>
+                <% if(error == 1) { %>
+                    <p class="text-error">Sklep nie został skonfigurowany. Należy zedytować plik <span class="badge badge-danger">config.json</span> ustawiając następujące parametry w general: <span class="badge badge-info">URL</span>, <span class="badge badge-info">NAME</span>, <span class="badge badge-info">COLOR</span>, <span class="badge badge-info">SERVER_ADDRESS</span> oraz w important: <span class="badge badge-info">LVLUPTOKEN</span>.</p>
+                <% } else if(error == 2.1) { %>
+                    <p class="text-error">Ustawiono metodę wykonywania komend jako <span class="badge badge-info">rcon</span>, jednak nie podano IP i portu oraz hasła. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
+                <% } else if(error == 2.2) { %>
+                    <p class="text-error">Ustawiono metodę wykonywania komend jako <span class="badge badge-info">pterodactyl</span>, jednak nie podano adresu, klucza oraz ID serwera. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
+                <% } else if(error == 2.3) { %>
+                    <p class="text-error">Podano niepoprawną nazwę metody wykonywania komend. Dostępne metody to <span class="badge badge-info">rcon</span> oraz <span class="badge badge-info">pterodactyl</span>. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
+                <% } else if(error == 3) { %>
+                    <p class="text-error">Jedna lub kilka usług zostały niepoprawnie skonfigurowane. Najprawdopodobniej nie podano jakiegoś parametru, lub podano cenę z cudzysłowiami (musi być bez). Należy to zmienić w pliku <span class="badge badge-danger">services.json</span>.</p>
+                <% } else if(error == 4) { %>
+                    <p class="text-error">Nazwa jednej lub kilku usług jest zbyt długa. Nie może ona przekraczać 12 znaków. Należy to zmienić w pliku <span class="badge badge-danger">services.json</span>. Opcjonalnie, jeżeli naprawdę potrzebujesz dłuższej nazwy, zwiększ limit w pliku <span class="badge badge-danger">config.json</span> - GENERAL -> SERVICE_NAME_LIMIT, jednak pamiętaj, że dłuższe nazwy mogą wpłynąć na estetyczność strony.</p>
+                <% } else if(error == 5) { %>
+                    <p class="text-error">Ustawiono metodę zapisu danych o zakupach jako  <span class="badge badge-info">mysql</span>, ale nie podano danych do logowania do bazy danych. Ustaw poprawne dane w pliku <span class="badge badge-danger">config.json</span>.</p>
+                <% } else { %>
+                    <p class="text-error">Ten błąd nie został przewidziany...</p>
+                <% } %>
+                <br>
+                <p class="text-error">Poradnik dotyczący konfiguracji znajdziesz <a href="https://github.com/0zelot/ItemShop">tutaj</a>.</p>
+                <p class="text-error">Pamiętaj, żeby po każdej zmianie w plikach konfiguracyjnych zrestartować aplikację.</p>
+            </div>
+        </main>
         <%- include("../includes/style"); -%>
     </body>
 </html>
