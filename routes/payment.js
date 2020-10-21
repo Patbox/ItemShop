@@ -31,10 +31,10 @@ module.exports = function(app){
                 if(config.important.purchases == "json") {
                     let purchases = await JSON.parse(fs.readFileSync("./purchases.json"));
                     await purchases.push({
-                        buyer: cache[req.body.paymentId].name,
-                        service: cache[req.body.paymentId].service,
+                        buyer: s.cache[req.body.paymentId].name,
+                        service: s.cache[req.body.paymentId].service,
                         details: req.body.paymentId,
-                        profit: cache[req.body.paymentId].price,
+                        profit: s.cache[req.body.paymentId].price,
                         date: Date.now()
                     });
                     fs.writeFileSync("./purchases.json", JSON.stringify(purchases, null, 1));
@@ -86,7 +86,7 @@ module.exports = function(app){
                     }
                 }
                 delete s.cache[req.body.paymentId];
-                log("Aktywowano usługę " + services[cache[req.body.paymentId].service].name + " dla gracza " + s.cache[req.body.paymentId].name + ".")
+                log("Aktywowano usługę " + services[s.cache[req.body.paymentId].service].name + " dla gracza " + s.cache[req.body.paymentId].name + ".")
             } else {
                 log("Usługa nie została aktywowana, ponieważ płatność najprawdopodobniej nie została dokonana.");
             }
