@@ -343,10 +343,3 @@ Po tym, należy pobrać nową wersję. W tym celu możesz użyć komendy `git cl
 Jeżeli masz już nową wersję, kolejnym krokiem jest przywrócenie trzech w/w plików. Należy mieć na uwadze, że plik `config.json` po aktualizacji mógł ulec zmianie, dlatego nie należy go bezmyślnie zastępować starym. 
 
 Ostatnim krokiem będzie wpisanie komendy `npm install` oraz uruchomienie sklepu.
-
-# Wygląd
-
-![](https://i.imgur.com/Zl8i4he.png)
-Tak wygląda strona główna skonfigurowanego sklepu.<br>
-
-### Możesz także zobaczyć wersję demonstracyjną na żywo odwiedzając [tę stronę](https://ozelot.gq/itemshop/).
